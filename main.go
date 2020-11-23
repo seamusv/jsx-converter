@@ -124,6 +124,10 @@ func transformToJsx(n *html.Node) {
       switch attr.Key {
       case "class":
         attr.Key = "className"
+      case "clip-rule":
+        attr.Key = "clipRule"
+      case "fill-rule":
+        attr.Key = "fillRule"
       case "stroke-linecap":
         attr.Key = "strokeLinecap"
       case "stroke-linejoin":
