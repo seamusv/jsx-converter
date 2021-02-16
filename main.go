@@ -2,6 +2,7 @@ package main
 
 import (
   "bytes"
+  "fmt"
   "github.com/leaanthony/mewn"
   "github.com/wailsapp/wails"
   "golang.org/x/net/html"
@@ -90,6 +91,13 @@ func transform(root *html.Node) *html.Node {
             {Key: "leaveTo", Val: data[6]},
           },
         }
+      } else {
+        fmt.Printf("Comment node: %s\n\n", child.Data)
+        commentNode := &html.Node{
+          Data: "{/* " + child.Data + " */}",
+          Type: html.RawNode,
+        }
+        newRoot.AppendChild(commentNode)
       }
     } else {
       newChild := transform(child)
