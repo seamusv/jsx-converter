@@ -94,10 +94,9 @@ func transform(root *html.Node) *html.Node {
     } else {
       newChild := transform(child)
       if transitionNode != nil && newChild.Type == html.ElementNode {
-        newChild.Attr = append([]html.Attribute{{Key: "ref", Val: "{ref}"}}, newChild.Attr...)
-        transitionNode.AppendChild(&html.Node{Type: html.RawNode, Data: "\n{ref => (\n"})
+        transitionNode.AppendChild(&html.Node{Type: html.RawNode, Data: "\n"})
         transitionNode.AppendChild(newChild)
-        transitionNode.AppendChild(&html.Node{Type: html.RawNode, Data: "\n)}\n"})
+        transitionNode.AppendChild(&html.Node{Type: html.RawNode, Data: "\n"})
         newRoot.AppendChild(transitionNode)
         transitionNode = nil
       } else {
